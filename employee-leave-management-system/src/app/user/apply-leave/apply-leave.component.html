@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="card shadow-lg p-4 mt-4">
+    <h3 class="text-center mb-4">Apply for Leave</h3>
+
+    <form [formGroup]="leaveForm" (ngSubmit)="applyLeave()">
+      <!-- Leave Type -->
+      <div class="mb-3">
+        <label for="leaveType" class="form-label">Leave Type</label>
+        <select formControlName="leaveType" class="form-control" id="leaveType">
+          <option value="" disabled>Select Leave Type</option>
+          <option *ngFor="let type of leaveTypes" [value]="type.Value">
+            {{ type.Label }}
+          </option>
+        </select>
+        <small class="text-danger" *ngIf="leaveForm.get('leaveType')?.invalid && leaveForm.get('leaveType')?.touched">
+          Please select a leave type.
+        </small>
+      </div>
+
+      <!-- Start Date -->
+      <div class="mb-3">
+        <label for="startDate" class="form-label">Start Date</label>
+        <input type="date" class="form-control" id="startDate" formControlName="startDate" />
+        <small class="text-danger" *ngIf="leaveForm.get('startDate')?.invalid && leaveForm.get('startDate')?.touched">
+          Start date is required.
+        </small>
+      </div>
+
+      <!-- End Date -->
+      <div class="mb-3">
+        <label for="endDate" class="form-label">End Date</label>
+        <input type="date" class="form-control" id="endDate" formControlName="endDate" />
+        <small class="text-danger" *ngIf="leaveForm.get('endDate')?.invalid && leaveForm.get('endDate')?.touched">
+          End date is required.
+        </small>
+      </div>
+
+      <!-- Reason -->
+      <div class="mb-3">
+        <label for="reason" class="form-label">Reason</label>
+        <textarea class="form-control" id="reason" rows="3" formControlName="reason" maxlength="250"></textarea>
+        <small class="text-muted">{{ leaveForm.get('reason')?.value.length || 0 }}/250</small>
+        <small class="text-danger" *ngIf="leaveForm.get('reason')?.invalid && leaveForm.get('reason')?.touched">
+          Reason is required (max 250 chars).
+        </small>
+      </div>
+
+      <!-- Submit Button with Loader -->
+      <button type="submit" class="btn btn-primary w-100" [disabled]="isLoading || !leaveForm.valid">
+        <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
+        Submit Leave Request
+      </button>
+    </form>
+  </div>
+</div>

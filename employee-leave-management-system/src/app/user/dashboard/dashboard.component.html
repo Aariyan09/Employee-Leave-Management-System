@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar text-white vh-100">
+      <div class="position-sticky">
+        <h4 class="text-center my-3">Employee Panel</h4>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/user/dashboard">
+              <i class="bi bi-speedometer2"></i> Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" (click)="openDialogForLeaveApply()">
+              <i class="bi bi-calendar-plus"></i> Apply for Leave
+            </a>
+
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/user/leave-history">
+              <i class="bi bi-clock-history"></i> Leave History
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/user/profile">
+              <i class="bi bi-person-circle"></i> My Profile
+            </a>
+          </li> -->
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between align-items-center py-3">
+        <h2>User Dashboard</h2>
+        <button class="btn btn-danger" (click)="logout()">Logout</button>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+              <h5 class="card-title">Total Leaves Applied</h5>
+              <p class="card-text fs-2">{{ totalLeaves }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+              <h5 class="card-title">Approved Leaves</h5>
+              <p class="card-text fs-2">{{ approvedLeaves }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card text-white bg-warning mb-3">
+            <div class="card-body">
+              <h5 class="card-title">Pending Leaves</h5>
+              <p class="card-text fs-2">{{ pendingLeaves }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

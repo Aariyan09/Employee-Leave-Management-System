@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <!-- Page Title & Buttons -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="text-primary">📊 Generate Leave Reports</h3>
+    <a routerLink="/admin/dashboard" class="btn btn-outline-secondary">
+      <i class="bi bi-arrow-left"></i> Back to Dashboard
+    </a>
+  </div>
+
+  <!-- Report Filters -->
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Report Filters</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <!-- Start Date -->
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Start Date</label>
+          <input type="date" class="form-control" [(ngModel)]="startDate" />
+        </div>
+
+        <!-- End Date -->
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">End Date</label>
+          <input type="date" class="form-control" [(ngModel)]="endDate" />
+        </div>
+
+        <!-- Leave Type -->
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Leave Type</label>
+          <select class="form-select" [(ngModel)]="selectedLeaveType">
+            <option value="0">All</option>
+            <option *ngFor="let type of leaveTypes" [value]="type.value">
+              {{ type.label }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Generate Report Button -->
+      <div class="row mt-4">
+        <div class="col-md-12 text-center">
+          <button class="btn btn-success px-4" (click)="generateReport()">
+            <i class="bi bi-file-earmark-excel"></i> Generate & Download Excel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

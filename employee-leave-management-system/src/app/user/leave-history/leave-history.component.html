@@ -1,0 +1,86 @@
+<div class="container mt-4">
+  <!-- Card Container -->
+  <div class="card shadow-lg">
+    <!-- Card Header -->
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <h5 class="mb-0">📅 Leave History</h5>
+      <div>
+        <button class="btn btn-light btn-sm me-2" (click)="goBack()">
+          <i class="bi bi-arrow-left"></i> Back to Dashboard
+        </button>
+        <button class="btn btn-secondary btn-sm" (click)="fetchLeaveHistory()">
+          <i class="bi bi-arrow-clockwise"></i> Refresh
+        </button>
+      </div>
+    </div>
+
+    <!-- Card Body -->
+    <div class="card-body">
+      <!-- Filters -->
+      <div class="row mb-3">
+        <!-- Status Filter -->
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Status</label>
+          <select class="form-select" [(ngModel)]="selectedStatus" (change)="applyFilter()">
+            <option value="">All</option>
+            <option value="0">Pending</option>
+            <option value="1">Approved</option>
+            <option value="-1">Rejected</option>
+          </select>
+        </div>
+
+        <!-- Start Date Filter -->
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Start Date</label>
+          <input type="date" class="form-control" [(ngModel)]="startDate" (change)="applyFilter()">
+        </div>
+
+        <!-- End Date Filter -->
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">End Date</label>
+          <input type="date" class="form-control" [(ngModel)]="endDate" (change)="applyFilter()">
+        </div>
+      </div>
+
+      <!-- Leave History Table -->
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead class="bg-primary text-white">
+            <tr>
+              <th>#</th>
+              <th>Type</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Status</th>
+              <th>Reason</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let leave of filteredLeaves; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ getLeaveType(leave.leaveType) }}</td>
+              <td>{{ leave.startDate | date }}</td>
+              <td>{{ leave.endDate | date }}</td>
+              <td>
+                <span [ngClass]="{
+                  'badge bg-warning text-dark': leave.status == '0',
+                  'badge bg-success': leave.status == '1',
+                  'badge bg-danger': leave.status == '-1'
+                }">
+                  {{ getStatus(leave.status) }}
+                </span>
+              </td>
+              <td>{{ leave.reason }}</td>
+              <td>
+                <button class="btn btn-danger btn-sm" *ngIf="leave.status == '0'" (click)="cancelLeave(leave.id)">
+                  <i class="bi bi-x-circle"></i> Cancel
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

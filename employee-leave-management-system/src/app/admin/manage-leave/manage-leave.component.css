@@ -1,0 +1,44 @@
+.badge {
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 4px;
+  }
+  
+  .container {
+    max-width: 1000px;
+  }
+  
+  .card {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .table {
+    margin-bottom: 0;
+  }
+  
+  .table th, .table td {
+    vertical-align: middle;
+  }
+  
+  .table th, .table td {
+    vertical-align: middle;
+  }
+  
+  .container {
+    max-width: 1000px;
+  }
+  
+  .card {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .table {
+    margin-bottom: 0;
+  }
+  
+  .table th, .table td {
+    vertical-align: middle;
+  }
+  
